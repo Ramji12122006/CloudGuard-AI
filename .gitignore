@@ -1,0 +1,40 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases and SQLite files
+*.db
+*.sqlite
+*.sqlite3
+cloudguard.db
+
+# Uploaded data files and user reports
+uploads/
+reports_export/
+*.log
+
+# Environments
+venv/
+env/
+.venv/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Scratch probes
+test_probe.txt
+probe.txt
