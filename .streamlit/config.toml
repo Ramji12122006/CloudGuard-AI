@@ -6,10 +6,14 @@ textColor = "#F8FAFC"
 font = "sans serif"
 
 [server]
-headless = true
+headless = false
+runOnSave = true
+port = 8501
 enableCORS = false
 enableXsrfProtection = true
 maxUploadSize = 200
 
 [browser]
 gatherUsageStats = false
+serverAddress = "localhost"
+serverPort = 8501

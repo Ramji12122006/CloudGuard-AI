@@ -107,15 +107,35 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Running the Application
+## 🚀 Running the Live Server
 
-Launch the Streamlit web dashboard locally:
+You can launch the live server using any of the following methods:
+
+### Method 1: Double-Click Launcher (Easiest)
+Simply double-click the included batch script in File Explorer:
+- **`run_live_server.bat`**
+*(This script automatically sets up the virtual environment, installs dependencies if missing, and launches the server).*
+
+### Method 2: Via PowerShell
 ```powershell
+.\run_live_server.ps1
+```
+
+### Method 3: Via Python Runner
+```powershell
+python run_server.py
+```
+
+### Method 4: Manual Command
+```powershell
+.\venv\Scripts\Activate.ps1
 streamlit run app.py
 ```
 
-The application will open automatically in your default web browser at:
+The application will open automatically in your web browser at:
 **`http://localhost:8501`**
+
+> **Live Reloading:** Any edits to the source code or configurations will automatically trigger a hot reload in the browser without requiring a server restart.
 
 ---
 
