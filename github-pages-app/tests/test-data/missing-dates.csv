@@ -1,0 +1,5 @@
+usage_date,service,cost_amount,region
+2026-09-01,Amazon EC2,100.00,us-east-1
+,Amazon S3,25.00,us-east-1
+2026-09-03,Amazon RDS,50.00,us-east-1
+null,AWS Lambda,10.00,us-east-1

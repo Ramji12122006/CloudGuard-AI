@@ -1,0 +1,5 @@
+billing_date,product_service,line_item_unblended_cost,availability_zone
+2026-09-01,Amazon Elastic Compute Cloud,125.40,us-east-1a
+2026-09-01,Amazon Simple Storage Service,35.10,us-east-1
+2026-09-02,Amazon Elastic Compute Cloud,126.00,us-east-1a
+2026-09-02,Amazon Simple Storage Service,35.50,us-east-1

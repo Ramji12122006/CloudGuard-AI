@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+  </defs>
+  <!-- Shield Background -->
+  <path d="M24 4L7 11V22C7 32.5 14.3 42.1 24 44C33.7 42.1 41 32.5 41 22V11L24 4Z" fill="url(#shieldGrad)" />
+  <!-- Inner Shield Accent -->
+  <path d="M24 7L10 13V22C10 30.6 15.9 38.8 24 40.8C32.1 38.8 38 30.6 38 22V13L24 7Z" fill="#0F172A" />
+  <!-- Cloud Contour -->
+  <path d="M29.5 25C29.2 22.8 27.3 21 25 21C24.3 21 23.7 21.2 23.1 21.5C22.4 19.5 20.3 18 18 18C15.2 18 13 20.2 13 23C13 23.3 13 23.6 13.1 23.9C11.3 24.5 10 26.1 10 28C10 30.2 11.8 32 14 32H29C30.7 32 32 30.7 32 29C32 27.4 30.9 26 29.5 25Z" fill="url(#cloudGrad)" opacity="0.9" />
+  <!-- Pulse Line Overlay -->
+  <path d="M14 26L20 22L24 28L28 20L34 25" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

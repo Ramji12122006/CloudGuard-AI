@@ -1,0 +1,212 @@
+usage_date,service,cost_amount,region,account_id,account_name,usage_quantity,unit,unit_price_usd,tag_project,tag_environment
+2026-09-01,Amazon EC2,142.50,us-east-1,112233445566,Prod-Core,1425,Hrs,0.10,phoenix-api,production
+2026-09-01,Amazon S3,45.20,us-east-1,112233445566,Prod-Core,1965,GB-Mo,0.023,data-lake,production
+2026-09-01,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-01,AWS Lambda,12.30,us-east-1,112233445566,Prod-Core,61500000,Requests,0.0000002,web-portal,production
+2026-09-01,Amazon CloudFront,18.75,us-east-1,112233445566,Prod-Core,220,GB,0.085,web-portal,production
+2026-09-01,Amazon DynamoDB,34.00,us-west-2,998877665544,Dev-Shared,680,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-01,AWS Data Transfer,8.90,us-east-1,112233445566,Prod-Core,99,GB,0.09,phoenix-api,production
+2026-09-02,Amazon EC2,144.10,us-east-1,112233445566,Prod-Core,1441,Hrs,0.10,phoenix-api,production
+2026-09-02,Amazon S3,45.80,us-east-1,112233445566,Prod-Core,1991,GB-Mo,0.023,data-lake,production
+2026-09-02,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-02,AWS Lambda,11.80,us-east-1,112233445566,Prod-Core,59000000,Requests,0.0000002,web-portal,production
+2026-09-02,Amazon CloudFront,19.20,us-east-1,112233445566,Prod-Core,225,GB,0.085,web-portal,production
+2026-09-02,Amazon DynamoDB,33.50,us-west-2,998877665544,Dev-Shared,670,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-02,AWS Data Transfer,9.10,us-east-1,112233445566,Prod-Core,101,GB,0.09,phoenix-api,production
+2026-09-03,Amazon EC2,141.80,us-east-1,112233445566,Prod-Core,1418,Hrs,0.10,phoenix-api,production
+2026-09-03,Amazon S3,46.10,us-east-1,112233445566,Prod-Core,2004,GB-Mo,0.023,data-lake,production
+2026-09-03,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-03,AWS Lambda,13.10,us-east-1,112233445566,Prod-Core,65500000,Requests,0.0000002,web-portal,production
+2026-09-03,Amazon CloudFront,17.90,us-east-1,112233445566,Prod-Core,210,GB,0.085,web-portal,production
+2026-09-03,Amazon DynamoDB,35.20,us-west-2,998877665544,Dev-Shared,704,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-03,AWS Data Transfer,8.80,us-east-1,112233445566,Prod-Core,98,GB,0.09,phoenix-api,production
+2026-09-04,Amazon EC2,143.00,us-east-1,112233445566,Prod-Core,1430,Hrs,0.10,phoenix-api,production
+2026-09-04,Amazon S3,46.50,us-east-1,112233445566,Prod-Core,2021,GB-Mo,0.023,data-lake,production
+2026-09-04,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-04,AWS Lambda,12.50,us-east-1,112233445566,Prod-Core,62500000,Requests,0.0000002,web-portal,production
+2026-09-04,Amazon CloudFront,20.10,us-east-1,112233445566,Prod-Core,236,GB,0.085,web-portal,production
+2026-09-04,Amazon DynamoDB,34.80,us-west-2,998877665544,Dev-Shared,696,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-04,AWS Data Transfer,9.30,us-east-1,112233445566,Prod-Core,103,GB,0.09,phoenix-api,production
+2026-09-05,Amazon EC2,142.20,us-east-1,112233445566,Prod-Core,1422,Hrs,0.10,phoenix-api,production
+2026-09-05,Amazon S3,47.00,us-east-1,112233445566,Prod-Core,2043,GB-Mo,0.023,data-lake,production
+2026-09-05,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-05,AWS Lambda,10.20,us-east-1,112233445566,Prod-Core,51000000,Requests,0.0000002,web-portal,production
+2026-09-05,Amazon CloudFront,16.50,us-east-1,112233445566,Prod-Core,194,GB,0.085,web-portal,production
+2026-09-05,Amazon DynamoDB,32.00,us-west-2,998877665544,Dev-Shared,640,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-05,AWS Data Transfer,8.50,us-east-1,112233445566,Prod-Core,94,GB,0.09,phoenix-api,production
+2026-09-06,Amazon EC2,140.50,us-east-1,112233445566,Prod-Core,1405,Hrs,0.10,phoenix-api,production
+2026-09-06,Amazon S3,47.30,us-east-1,112233445566,Prod-Core,2056,GB-Mo,0.023,data-lake,production
+2026-09-06,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-06,AWS Lambda,9.80,us-east-1,112233445566,Prod-Core,49000000,Requests,0.0000002,web-portal,production
+2026-09-06,Amazon CloudFront,15.80,us-east-1,112233445566,Prod-Core,186,GB,0.085,web-portal,production
+2026-09-06,Amazon DynamoDB,31.50,us-west-2,998877665544,Dev-Shared,630,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-06,AWS Data Transfer,8.20,us-east-1,112233445566,Prod-Core,91,GB,0.09,phoenix-api,production
+2026-09-07,Amazon EC2,143.60,us-east-1,112233445566,Prod-Core,1436,Hrs,0.10,phoenix-api,production
+2026-09-07,Amazon S3,47.80,us-east-1,112233445566,Prod-Core,2078,GB-Mo,0.023,data-lake,production
+2026-09-07,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-07,AWS Lambda,12.70,us-east-1,112233445566,Prod-Core,63500000,Requests,0.0000002,web-portal,production
+2026-09-07,Amazon CloudFront,19.50,us-east-1,112233445566,Prod-Core,229,GB,0.085,web-portal,production
+2026-09-07,Amazon DynamoDB,34.10,us-west-2,998877665544,Dev-Shared,682,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-07,AWS Data Transfer,9.00,us-east-1,112233445566,Prod-Core,100,GB,0.09,phoenix-api,production
+2026-09-08,Amazon EC2,144.80,us-east-1,112233445566,Prod-Core,1448,Hrs,0.10,phoenix-api,production
+2026-09-08,Amazon S3,48.20,us-east-1,112233445566,Prod-Core,2095,GB-Mo,0.023,data-lake,production
+2026-09-08,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-08,AWS Lambda,13.40,us-east-1,112233445566,Prod-Core,67000000,Requests,0.0000002,web-portal,production
+2026-09-08,Amazon CloudFront,20.40,us-east-1,112233445566,Prod-Core,240,GB,0.085,web-portal,production
+2026-09-08,Amazon DynamoDB,35.60,us-west-2,998877665544,Dev-Shared,712,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-08,AWS Data Transfer,9.40,us-east-1,112233445566,Prod-Core,104,GB,0.09,phoenix-api,production
+2026-09-09,Amazon EC2,143.10,us-east-1,112233445566,Prod-Core,1431,Hrs,0.10,phoenix-api,production
+2026-09-09,Amazon S3,48.90,us-east-1,112233445566,Prod-Core,2126,GB-Mo,0.023,data-lake,production
+2026-09-09,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-09,AWS Lambda,12.90,us-east-1,112233445566,Prod-Core,64500000,Requests,0.0000002,web-portal,production
+2026-09-09,Amazon CloudFront,18.90,us-east-1,112233445566,Prod-Core,222,GB,0.085,web-portal,production
+2026-09-09,Amazon DynamoDB,34.90,us-west-2,998877665544,Dev-Shared,698,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-09,AWS Data Transfer,9.20,us-east-1,112233445566,Prod-Core,102,GB,0.09,phoenix-api,production
+2026-09-10,Amazon EC2,145.20,us-east-1,112233445566,Prod-Core,1452,Hrs,0.10,phoenix-api,production
+2026-09-10,Amazon S3,49.40,us-east-1,112233445566,Prod-Core,2147,GB-Mo,0.023,data-lake,production
+2026-09-10,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-10,AWS Lambda,13.80,us-east-1,112233445566,Prod-Core,69000000,Requests,0.0000002,web-portal,production
+2026-09-10,Amazon CloudFront,21.10,us-east-1,112233445566,Prod-Core,248,GB,0.085,web-portal,production
+2026-09-10,Amazon DynamoDB,36.20,us-west-2,998877665544,Dev-Shared,724,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-10,AWS Data Transfer,9.60,us-east-1,112233445566,Prod-Core,106,GB,0.09,phoenix-api,production
+2026-09-11,Amazon EC2,144.50,us-east-1,112233445566,Prod-Core,1445,Hrs,0.10,phoenix-api,production
+2026-09-11,Amazon S3,50.10,us-east-1,112233445566,Prod-Core,2178,GB-Mo,0.023,data-lake,production
+2026-09-11,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-11,AWS Lambda,12.20,us-east-1,112233445566,Prod-Core,61000000,Requests,0.0000002,web-portal,production
+2026-09-11,Amazon CloudFront,19.80,us-east-1,112233445566,Prod-Core,233,GB,0.085,web-portal,production
+2026-09-11,Amazon DynamoDB,34.40,us-west-2,998877665544,Dev-Shared,688,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-11,AWS Data Transfer,9.10,us-east-1,112233445566,Prod-Core,101,GB,0.09,phoenix-api,production
+2026-09-12,Amazon EC2,141.00,us-east-1,112233445566,Prod-Core,1410,Hrs,0.10,phoenix-api,production
+2026-09-12,Amazon S3,50.80,us-east-1,112233445566,Prod-Core,2208,GB-Mo,0.023,data-lake,production
+2026-09-12,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-12,AWS Lambda,10.50,us-east-1,112233445566,Prod-Core,52500000,Requests,0.0000002,web-portal,production
+2026-09-12,Amazon CloudFront,17.20,us-east-1,112233445566,Prod-Core,202,GB,0.085,web-portal,production
+2026-09-12,Amazon DynamoDB,32.80,us-west-2,998877665544,Dev-Shared,656,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-12,AWS Data Transfer,8.60,us-east-1,112233445566,Prod-Core,95,GB,0.09,phoenix-api,production
+2026-09-13,Amazon EC2,140.20,us-east-1,112233445566,Prod-Core,1402,Hrs,0.10,phoenix-api,production
+2026-09-13,Amazon S3,51.30,us-east-1,112233445566,Prod-Core,2230,GB-Mo,0.023,data-lake,production
+2026-09-13,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-13,AWS Lambda,10.00,us-east-1,112233445566,Prod-Core,50000000,Requests,0.0000002,web-portal,production
+2026-09-13,Amazon CloudFront,16.40,us-east-1,112233445566,Prod-Core,193,GB,0.085,web-portal,production
+2026-09-13,Amazon DynamoDB,31.90,us-west-2,998877665544,Dev-Shared,638,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-13,AWS Data Transfer,8.30,us-east-1,112233445566,Prod-Core,92,GB,0.09,phoenix-api,production
+2026-09-14,Amazon EC2,143.90,us-east-1,112233445566,Prod-Core,1439,Hrs,0.10,phoenix-api,production
+2026-09-14,Amazon S3,51.90,us-east-1,112233445566,Prod-Core,2256,GB-Mo,0.023,data-lake,production
+2026-09-14,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-14,AWS Lambda,12.80,us-east-1,112233445566,Prod-Core,64000000,Requests,0.0000002,web-portal,production
+2026-09-14,Amazon CloudFront,19.90,us-east-1,112233445566,Prod-Core,234,GB,0.085,web-portal,production
+2026-09-14,Amazon DynamoDB,35.10,us-west-2,998877665544,Dev-Shared,702,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-14,AWS Data Transfer,9.20,us-east-1,112233445566,Prod-Core,102,GB,0.09,phoenix-api,production
+2026-09-15,Amazon EC2,144.20,us-east-1,112233445566,Prod-Core,1442,Hrs,0.10,phoenix-api,production
+2026-09-15,Amazon S3,52.50,us-east-1,112233445566,Prod-Core,2282,GB-Mo,0.023,data-lake,production
+2026-09-15,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-15,AWS Lambda,13.20,us-east-1,112233445566,Prod-Core,66000000,Requests,0.0000002,web-portal,production
+2026-09-15,Amazon CloudFront,20.80,us-east-1,112233445566,Prod-Core,244,GB,0.085,web-portal,production
+2026-09-15,Amazon DynamoDB,35.80,us-west-2,998877665544,Dev-Shared,716,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-15,AWS Data Transfer,9.50,us-east-1,112233445566,Prod-Core,105,GB,0.09,phoenix-api,production
+2026-09-15,AWS Promotional Credit,-150.00,us-east-1,112233445566,Prod-Core,1,Count,150.00,enterprise-billing,production
+2026-09-16,Amazon EC2,145.00,us-east-1,112233445566,Prod-Core,1450,Hrs,0.10,phoenix-api,production
+2026-09-16,Amazon S3,53.20,us-east-1,112233445566,Prod-Core,2313,GB-Mo,0.023,data-lake,production
+2026-09-16,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-16,AWS Lambda,13.50,us-east-1,112233445566,Prod-Core,67500000,Requests,0.0000002,web-portal,production
+2026-09-16,Amazon CloudFront,21.50,us-east-1,112233445566,Prod-Core,253,GB,0.085,web-portal,production
+2026-09-16,Amazon DynamoDB,36.50,us-west-2,998877665544,Dev-Shared,730,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-16,AWS Data Transfer,9.70,us-east-1,112233445566,Prod-Core,107,GB,0.09,phoenix-api,production
+2026-09-17,Amazon EC2,144.70,us-east-1,112233445566,Prod-Core,1447,Hrs,0.10,phoenix-api,production
+2026-09-17,Amazon S3,53.90,us-east-1,112233445566,Prod-Core,2343,GB-Mo,0.023,data-lake,production
+2026-09-17,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-17,AWS Lambda,13.00,us-east-1,112233445566,Prod-Core,65000000,Requests,0.0000002,web-portal,production
+2026-09-17,Amazon CloudFront,20.20,us-east-1,112233445566,Prod-Core,237,GB,0.085,web-portal,production
+2026-09-17,Amazon DynamoDB,35.40,us-west-2,998877665544,Dev-Shared,708,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-17,AWS Data Transfer,9.30,us-east-1,112233445566,Prod-Core,103,GB,0.09,phoenix-api,production
+2026-09-18,Amazon EC2,143.80,us-east-1,112233445566,Prod-Core,1438,Hrs,0.10,phoenix-api,production
+2026-09-18,Amazon S3,54.60,us-east-1,112233445566,Prod-Core,2374,GB-Mo,0.023,data-lake,production
+2026-09-18,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-18,AWS Lambda,12.60,us-east-1,112233445566,Prod-Core,63000000,Requests,0.0000002,web-portal,production
+2026-09-18,Amazon CloudFront,19.60,us-east-1,112233445566,Prod-Core,230,GB,0.085,web-portal,production
+2026-09-18,Amazon DynamoDB,34.70,us-west-2,998877665544,Dev-Shared,694,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-18,AWS Data Transfer,9.00,us-east-1,112233445566,Prod-Core,100,GB,0.09,phoenix-api,production
+2026-09-19,Amazon EC2,141.20,us-east-1,112233445566,Prod-Core,1412,Hrs,0.10,phoenix-api,production
+2026-09-19,Amazon S3,55.30,us-east-1,112233445566,Prod-Core,2404,GB-Mo,0.023,data-lake,production
+2026-09-19,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-19,AWS Lambda,10.80,us-east-1,112233445566,Prod-Core,54000000,Requests,0.0000002,web-portal,production
+2026-09-19,Amazon CloudFront,17.50,us-east-1,112233445566,Prod-Core,205,GB,0.085,web-portal,production
+2026-09-19,Amazon DynamoDB,33.10,us-west-2,998877665544,Dev-Shared,662,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-19,AWS Data Transfer,8.70,us-east-1,112233445566,Prod-Core,96,GB,0.09,phoenix-api,production
+2026-09-20,Amazon EC2,140.80,us-east-1,112233445566,Prod-Core,1408,Hrs,0.10,phoenix-api,production
+2026-09-20,Amazon S3,56.00,us-east-1,112233445566,Prod-Core,2434,GB-Mo,0.023,data-lake,production
+2026-09-20,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-20,AWS Lambda,10.10,us-east-1,112233445566,Prod-Core,50500000,Requests,0.0000002,web-portal,production
+2026-09-20,Amazon CloudFront,16.80,us-east-1,112233445566,Prod-Core,197,GB,0.085,web-portal,production
+2026-09-20,Amazon DynamoDB,32.20,us-west-2,998877665544,Dev-Shared,644,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-20,AWS Data Transfer,8.40,us-east-1,112233445566,Prod-Core,93,GB,0.09,phoenix-api,production
+2026-09-21,Amazon EC2,144.30,us-east-1,112233445566,Prod-Core,1443,Hrs,0.10,phoenix-api,production
+2026-09-21,Amazon S3,56.80,us-east-1,112233445566,Prod-Core,2469,GB-Mo,0.023,data-lake,production
+2026-09-21,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-21,AWS Lambda,13.10,us-east-1,112233445566,Prod-Core,65500000,Requests,0.0000002,web-portal,production
+2026-09-21,Amazon CloudFront,20.50,us-east-1,112233445566,Prod-Core,241,GB,0.085,web-portal,production
+2026-09-21,Amazon DynamoDB,35.50,us-west-2,998877665544,Dev-Shared,710,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-21,AWS Data Transfer,9.40,us-east-1,112233445566,Prod-Core,104,GB,0.09,phoenix-api,production
+2026-09-22,Amazon EC2,485.60,us-east-1,112233445566,Prod-Core,4856,Hrs,0.10,phoenix-api,production
+2026-09-22,Amazon S3,57.50,us-east-1,112233445566,Prod-Core,2500,GB-Mo,0.023,data-lake,production
+2026-09-22,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-22,AWS Lambda,14.20,us-east-1,112233445566,Prod-Core,71000000,Requests,0.0000002,web-portal,production
+2026-09-22,Amazon CloudFront,22.00,us-east-1,112233445566,Prod-Core,258,GB,0.085,web-portal,production
+2026-09-22,Amazon DynamoDB,36.80,us-west-2,998877665544,Dev-Shared,736,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-22,AWS Data Transfer,184.20,us-east-1,112233445566,Prod-Core,2046,GB,0.09,phoenix-api,production
+2026-09-23,Amazon EC2,146.20,us-east-1,112233445566,Prod-Core,1462,Hrs,0.10,phoenix-api,production
+2026-09-23,Amazon S3,58.20,us-east-1,112233445566,Prod-Core,2530,GB-Mo,0.023,data-lake,production
+2026-09-23,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-23,AWS Lambda,13.60,us-east-1,112233445566,Prod-Core,68000000,Requests,0.0000002,web-portal,production
+2026-09-23,Amazon CloudFront,21.00,us-east-1,112233445566,Prod-Core,247,GB,0.085,web-portal,production
+2026-09-23,Amazon DynamoDB,36.00,us-west-2,998877665544,Dev-Shared,720,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-23,AWS Data Transfer,9.80,us-east-1,112233445566,Prod-Core,108,GB,0.09,phoenix-api,production
+2026-09-24,Amazon EC2,145.40,us-east-1,112233445566,Prod-Core,1454,Hrs,0.10,phoenix-api,production
+2026-09-24,Amazon S3,58.90,us-east-1,112233445566,Prod-Core,2560,GB-Mo,0.023,data-lake,production
+2026-09-24,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-24,AWS Lambda,13.30,us-east-1,112233445566,Prod-Core,66500000,Requests,0.0000002,web-portal,production
+2026-09-24,Amazon CloudFront,20.70,us-east-1,112233445566,Prod-Core,243,GB,0.085,web-portal,production
+2026-09-24,Amazon DynamoDB,35.70,us-west-2,998877665544,Dev-Shared,714,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-24,AWS Data Transfer,9.50,us-east-1,112233445566,Prod-Core,105,GB,0.09,phoenix-api,production
+2026-09-25,Amazon EC2,144.90,us-east-1,112233445566,Prod-Core,1449,Hrs,0.10,phoenix-api,production
+2026-09-25,Amazon S3,59.60,us-east-1,112233445566,Prod-Core,2591,GB-Mo,0.023,data-lake,production
+2026-09-25,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-25,AWS Lambda,12.90,us-east-1,112233445566,Prod-Core,64500000,Requests,0.0000002,web-portal,production
+2026-09-25,Amazon CloudFront,20.00,us-east-1,112233445566,Prod-Core,235,GB,0.085,web-portal,production
+2026-09-25,Amazon DynamoDB,35.00,us-west-2,998877665544,Dev-Shared,700,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-25,AWS Data Transfer,9.20,us-east-1,112233445566,Prod-Core,102,GB,0.09,phoenix-api,production
+2026-09-26,Amazon EC2,141.50,us-east-1,112233445566,Prod-Core,1415,Hrs,0.10,phoenix-api,production
+2026-09-26,Amazon S3,60.30,us-east-1,112233445566,Prod-Core,2621,GB-Mo,0.023,data-lake,production
+2026-09-26,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-26,AWS Lambda,10.60,us-east-1,112233445566,Prod-Core,53000000,Requests,0.0000002,web-portal,production
+2026-09-26,Amazon CloudFront,17.80,us-east-1,112233445566,Prod-Core,209,GB,0.085,web-portal,production
+2026-09-26,Amazon DynamoDB,33.30,us-west-2,998877665544,Dev-Shared,666,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-26,AWS Data Transfer,8.80,us-east-1,112233445566,Prod-Core,97,GB,0.09,phoenix-api,production
+2026-09-27,Amazon EC2,140.90,us-east-1,112233445566,Prod-Core,1409,Hrs,0.10,phoenix-api,production
+2026-09-27,Amazon S3,61.00,us-east-1,112233445566,Prod-Core,2652,GB-Mo,0.023,data-lake,production
+2026-09-27,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-27,AWS Lambda,10.30,us-east-1,112233445566,Prod-Core,51500000,Requests,0.0000002,web-portal,production
+2026-09-27,Amazon CloudFront,17.00,us-east-1,112233445566,Prod-Core,200,GB,0.085,web-portal,production
+2026-09-27,Amazon DynamoDB,32.60,us-west-2,998877665544,Dev-Shared,652,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-27,AWS Data Transfer,8.50,us-east-1,112233445566,Prod-Core,94,GB,0.09,phoenix-api,production
+2026-09-28,Amazon EC2,144.60,us-east-1,112233445566,Prod-Core,1446,Hrs,0.10,phoenix-api,production
+2026-09-28,Amazon S3,61.80,us-east-1,112233445566,Prod-Core,2686,GB-Mo,0.023,data-lake,production
+2026-09-28,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-28,AWS Lambda,13.20,us-east-1,112233445566,Prod-Core,66000000,Requests,0.0000002,web-portal,production
+2026-09-28,Amazon CloudFront,20.60,us-east-1,112233445566,Prod-Core,242,GB,0.085,web-portal,production
+2026-09-28,Amazon DynamoDB,35.60,us-west-2,998877665544,Dev-Shared,712,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-28,AWS Data Transfer,9.40,us-east-1,112233445566,Prod-Core,104,GB,0.09,phoenix-api,production
+2026-09-29,Amazon EC2,145.10,us-east-1,112233445566,Prod-Core,1451,Hrs,0.10,phoenix-api,production
+2026-09-29,Amazon S3,62.50,us-east-1,112233445566,Prod-Core,2717,GB-Mo,0.023,data-lake,production
+2026-09-29,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-29,AWS Lambda,13.70,us-east-1,112233445566,Prod-Core,68500000,Requests,0.0000002,web-portal,production
+2026-09-29,Amazon CloudFront,21.20,us-east-1,112233445566,Prod-Core,249,GB,0.085,web-portal,production
+2026-09-29,Amazon DynamoDB,36.10,us-west-2,998877665544,Dev-Shared,722,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-29,AWS Data Transfer,9.60,us-east-1,112233445566,Prod-Core,106,GB,0.09,phoenix-api,production
+2026-09-30,Amazon EC2,145.80,us-east-1,112233445566,Prod-Core,1458,Hrs,0.10,phoenix-api,production
+2026-09-30,Amazon S3,63.20,us-east-1,112233445566,Prod-Core,2747,GB-Mo,0.023,data-lake,production
+2026-09-30,Amazon RDS,88.40,us-east-1,112233445566,Prod-Core,720,Hrs,0.1228,phoenix-api,production
+2026-09-30,AWS Lambda,13.90,us-east-1,112233445566,Prod-Core,69500000,Requests,0.0000002,web-portal,production
+2026-09-30,Amazon CloudFront,21.80,us-east-1,112233445566,Prod-Core,256,GB,0.085,web-portal,production
+2026-09-30,Amazon DynamoDB,36.60,us-west-2,998877665544,Dev-Shared,732,WCU-Hrs,0.05,ml-pipeline,staging
+2026-09-30,AWS Data Transfer,9.90,us-east-1,112233445566,Prod-Core,110,GB,0.09,phoenix-api,production

@@ -1,0 +1,11 @@
+usage_date,service,cost_amount,region
+2026-09-01,Amazon EC2,50.00,us-east-1
+2026-09-02,Amazon EC2,51.00,us-east-1
+2026-09-03,Amazon EC2,49.50,us-east-1
+2026-09-04,Amazon EC2,50.20,us-east-1
+2026-09-05,Amazon EC2,50.80,us-east-1
+2026-09-06,Amazon EC2,49.90,us-east-1
+2026-09-07,Amazon EC2,50.50,us-east-1
+2026-09-08,Amazon EC2,51.20,us-east-1
+2026-09-09,Amazon EC2,50.00,us-east-1
+2026-09-10,Amazon EC2,450.00,us-east-1

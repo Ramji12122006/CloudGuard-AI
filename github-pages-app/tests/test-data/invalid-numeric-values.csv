@@ -1,0 +1,6 @@
+usage_date,service,cost_amount,region
+2026-09-01,Amazon EC2,100.50,us-east-1
+2026-09-02,Amazon EC2,INVALID_COST,us-east-1
+2026-09-03,Amazon EC2,$45.00,us-east-1
+2026-09-04,Amazon EC2,,us-east-1
+2026-09-05,Amazon EC2,N/A,us-east-1

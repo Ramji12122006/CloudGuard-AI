@@ -1,0 +1,21 @@
+usage_date,service,cost_amount,region
+2026-09-01,Amazon EC2,100.00,us-east-1
+2026-09-01,Amazon S3,20.00,us-east-1
+2026-09-02,Amazon EC2,102.50,us-east-1
+2026-09-02,Amazon S3,20.50,us-east-1
+2026-09-03,Amazon EC2,99.80,us-east-1
+2026-09-03,Amazon S3,20.10,us-east-1
+2026-09-04,Amazon EC2,101.20,us-east-1
+2026-09-04,Amazon S3,20.40,us-east-1
+2026-09-05,Amazon EC2,100.50,us-east-1
+2026-09-05,Amazon S3,20.20,us-east-1
+2026-09-06,Amazon EC2,99.90,us-east-1
+2026-09-06,Amazon S3,20.30,us-east-1
+2026-09-07,Amazon EC2,101.80,us-east-1
+2026-09-07,Amazon S3,20.60,us-east-1
+2026-09-08,Amazon EC2,102.00,us-east-1
+2026-09-08,Amazon S3,20.50,us-east-1
+2026-09-09,Amazon EC2,100.90,us-east-1
+2026-09-09,Amazon S3,20.40,us-east-1
+2026-09-10,Amazon EC2,101.50,us-east-1
+2026-09-10,Amazon S3,20.50,us-east-1

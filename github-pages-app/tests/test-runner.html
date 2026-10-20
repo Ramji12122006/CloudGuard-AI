@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudGuard AI — Automated Test Runner</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <style>
+    body {
+      background-color: var(--bg-primary);
+      padding: 30px;
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+    }
+    .test-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .test-header {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .test-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s ease;
+    }
+    .test-card.passed {
+      border-left: 4px solid var(--accent-emerald);
+    }
+    .test-card.failed {
+      border-left: 4px solid var(--accent-rose);
+      background-color: rgba(244, 63, 94, 0.05);
+    }
+    .test-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    .error-msg {
+      margin-top: 6px;
+      color: var(--accent-rose);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+    }
+  </style>
+  <!-- Load Application Modules Under Test -->
+  <script src="../assets/js/state.js"></script>
+  <script src="../assets/js/validation.js"></script>
+  <script src="../assets/js/dataNormalizer.js"></script>
+  <script src="../assets/js/costEngine.js"></script>
+  <script src="../assets/js/anomalyDetector.js"></script>
+  <script src="../assets/js/forecaster.js"></script>
+  <script src="../assets/js/recommendations.js"></script>
+  <!-- Test Suite -->
+  <script src="test-suite.js"></script>
+</head>
+<body>
+  <div class="test-container">
+    <div class="test-header">
+      <div class="flex-between items-center mb-3">
+        <div class="flex items-center gap-3">
+          <img src="../assets/images/logo.svg" alt="Logo" width="36" height="36">
+          <div>
+            <h1 class="text-xl font-bold text-white">CloudGuard AI — Automated Test Suite</h1>
+            <p class="text-xs text-slate">Client-side functional test verification runner</p>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="runTests()">↻ Re-run All Tests</button>
+      </div>
+
+      <div class="kpi-grid-mini" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+        <div class="card p-3 text-center">
+          <div class="text-xs text-slate uppercase font-bold">Total Tests</div>
+          <div class="text-2xl font-bold text-white" id="summary-total">0</div>
+        </div>
+        <div class="card p-3 text-center">
+          <div class="text-xs text-slate uppercase font-bold">Passed</div>
+          <div class="text-2xl font-bold text-emerald" id="summary-passed">0</div>
+        </div>
+        <div class="card p-3 text-center">
+          <div class="text-xs text-slate uppercase font-bold">Failed</div>
+          <div class="text-2xl font-bold text-rose" id="summary-failed">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="test-results-list">
+      <div class="text-center py-4 text-slate">Running automated tests...</div>
+    </div>
+  </div>
+
+  <script>
+    async function runTests() {
+      const container = document.getElementById('test-results-list');
+      container.innerHTML = '<div class="text-center py-4 text-slate">Executing assertion suites...</div>';
+
+      const results = await CloudGuardTestSuite.runAll();
+
+      document.getElementById('summary-total').textContent = results.total;
+      document.getElementById('summary-passed').textContent = results.passed;
+      document.getElementById('summary-failed').textContent = results.failed;
+
+      container.innerHTML = results.results.map(r => `
+        <div class="test-card ${r.status.toLowerCase()}">
+          <div>
+            <div class="font-semibold text-sm text-white">${r.name}</div>
+            ${r.error ? `<div class="error-msg">✕ ${r.error}</div>` : ''}
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="test-meta">${r.duration}ms</span>
+            <span class="badge ${r.status === 'PASSED' ? 'badge-emerald' : 'badge-rose'}">${r.status}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', runTests);
+  </script>
+</body>
+</html>

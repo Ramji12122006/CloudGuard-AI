@@ -1,0 +1,6 @@
+usage_date,service,cost_amount,region
+2026-09-01,Amazon IAM,0.00,global
+2026-09-01,AWS CloudTrail,0.00,us-east-1
+2026-09-01,Amazon VPC,0.00,us-east-1
+2026-09-02,Amazon EC2,120.00,us-east-1
+2026-09-02,Amazon IAM,0.00,global

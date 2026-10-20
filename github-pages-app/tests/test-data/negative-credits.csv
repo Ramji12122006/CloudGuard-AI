@@ -1,0 +1,6 @@
+usage_date,service,cost_amount,region
+2026-09-01,Amazon EC2,150.00,us-east-1
+2026-09-02,Amazon S3,50.00,us-east-1
+2026-09-03,AWS Promotional Credit,-100.00,us-east-1
+2026-09-04,Amazon EC2,145.00,us-east-1
+2026-09-05,Support Refund,-25.00,us-east-1

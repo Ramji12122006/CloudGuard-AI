@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudGuard AI — Page Not Found</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: var(--bg-primary);
+      text-align: center;
+      padding: 20px;
+    }
+    .not-found-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      max-width: 480px;
+      box-shadow: var(--shadow-lg);
+    }
+  </style>
+</head>
+<body>
+  <div class="not-found-card">
+    <div style="font-size: 3rem; margin-bottom: 16px;">🛡️</div>
+    <h1 style="color: #FFFFFF; font-size: 1.5rem; margin-bottom: 8px;">Page Not Found</h1>
+    <p class="text-slate text-sm mb-4">The requested view could not be located, or GitHub Pages redirected from an external link.</p>
+    <a href="index.html" class="btn btn-primary">Return to CloudGuard AI Dashboard</a>
+  </div>
+  <script>
+    // If the path contains a hash route, redirect to index.html with that hash
+    const hash = window.location.hash;
+    if (hash && hash.length > 1) {
+      window.location.replace('index.html' + hash);
+    }
+  </script>
+</body>
+</html>

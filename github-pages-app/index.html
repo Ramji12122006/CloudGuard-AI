@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudGuard AI — Cloud Billing Analysis & Cost Optimization Dashboard</title>
+  <meta name="description" content="100% Client-Side Cloud Billing Analysis, Anomaly Detection, Forecasting & Cost Optimization Dashboard. Works completely in your browser without servers.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  
+  <!-- CSS Stylesheets (Relative paths for GitHub Pages subpath compatibility) -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- External CDN Libraries (Documented in README: Papa Parse for browser CSV parsing, Chart.js for data visualization) -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <img src="assets/images/logo.svg" alt="CloudGuard AI Logo" class="brand-logo">
+        <div class="brand-text">
+          <h1>CloudGuard AI</h1>
+          <span>Cloud FinOps Engine</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#overview" data-view="overview" class="active">
+          <span class="nav-icon">📊</span>
+          <span>Overview</span>
+        </a>
+        <a href="#import" data-view="import">
+          <span class="nav-icon">📥</span>
+          <span>Billing Data Import</span>
+        </a>
+        <a href="#explorer" data-view="explorer">
+          <span class="nav-icon">🔍</span>
+          <span>Cost Explorer</span>
+        </a>
+        <a href="#anomalies" data-view="anomalies">
+          <span class="nav-icon">⚡</span>
+          <span>Anomaly Detection</span>
+        </a>
+        <a href="#forecast" data-view="forecast">
+          <span class="nav-icon">📈</span>
+          <span>Cost Forecast</span>
+        </a>
+        <a href="#optimization" data-view="optimization">
+          <span class="nav-icon">💡</span>
+          <span>Cost Optimization</span>
+        </a>
+        <a href="#reports" data-view="reports">
+          <span class="nav-icon">📑</span>
+          <span>Reports</span>
+        </a>
+        <a href="#settings" data-view="settings">
+          <span class="nav-icon">⚙️</span>
+          <span>Settings & Privacy</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="privacy-badge" title="All CSV processing and machine analysis executes locally in browser memory.">
+          <span class="privacy-dot"></span>
+          <span>100% Client-Side Privacy</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-content">
+      
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-toggle" id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+          <div id="global-data-status" class="text-sm text-slate">
+            <span class="status-indicator offline"></span> No billing data loaded
+          </div>
+        </div>
+        <div class="topbar-right">
+          <span id="global-date-range" class="text-xs text-slate font-mono hide-print">Ready for import</span>
+          <button class="btn btn-outline btn-sm" id="btn-header-sample">
+            <span>✨</span> <span class="btn-text">Load Sample Data</span>
+          </button>
+          <a href="#import" class="btn btn-primary btn-sm" onclick="CloudGuardUI.switchView('import')">
+            <span>📤</span> <span class="btn-text">Upload CSV</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- 1. OVERVIEW DASHBOARD VIEW -->
+      <section class="view-section" id="view-overview">
+        <div class="view-header">
+          <h2>Overview Dashboard</h2>
+          <p>Real-time cloud spending summary, multi-dimensional breakdowns, anomalies, and optimization opportunities.</p>
+        </div>
+
+        <!-- Empty State Prompt -->
+        <div class="empty-state-notice">
+          <div class="empty-state-icon">🛡️</div>
+          <h3>Welcome to CloudGuard AI</h3>
+          <p>Analyze your cloud billing data with zero server uploads. Import your AWS, GCP, or Azure CSV billing export to begin, or try our realistic 30-day sample dataset.</p>
+          <div class="flex gap-3">
+            <button class="btn btn-primary" onclick="CloudGuardApp.loadSampleData()">✨ Load 30-Day Sample Data</button>
+            <button class="btn btn-secondary" onclick="CloudGuardUI.switchView('import')">📥 Upload Your Billing CSV</button>
+          </div>
+        </div>
+
+        <!-- Data Content Wrapper -->
+        <div class="data-content-wrapper hidden">
+          <!-- 6 KPI Summary Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Total Cloud Spend</div>
+              <div class="kpi-value text-cyan" id="kpi-total-spend">$0.00</div>
+              <div class="kpi-subtext" id="kpi-total-credits">Net billed cost</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Average Daily Cost</div>
+              <div class="kpi-value" id="kpi-avg-daily">$0.00</div>
+              <div class="kpi-subtext" id="kpi-days-count">Across 0 billing days</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Highest-Cost Service</div>
+              <div class="kpi-value text-white text-lg font-bold" id="kpi-highest-service">—</div>
+              <div class="kpi-subtext" id="kpi-highest-service-cost">$0.00 (0%)</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Period-over-Period Change</div>
+              <div class="kpi-value" id="kpi-period-change">0.0%</div>
+              <div class="kpi-badge badge-neutral" id="kpi-period-badge">No change</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Detected Anomalies</div>
+              <div class="kpi-value text-rose" id="kpi-anomalies-count">0</div>
+              <div class="kpi-badge badge-neutral" id="kpi-anomalies-badge">Statistical spikes</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Estimated Potential Savings</div>
+              <div class="kpi-value text-emerald" id="kpi-potential-savings">$0.00</div>
+              <div class="kpi-subtext" id="kpi-recs-count">0 recommendations</div>
+            </div>
+          </div>
+
+          <!-- Charts Grid: Daily Trend & Service Breakdown -->
+          <div class="chart-grid">
+            <div class="card">
+              <div class="card-header">
+                <h3>Daily Spending Trend</h3>
+                <span class="badge badge-cyan">Chronological Net Cost</span>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="chart-overview-daily"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h3>Cost by Service</h3>
+                <span class="badge badge-blue">Top Services</span>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="chart-overview-service"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Chart Grid: Region & Overview Tables -->
+          <div class="chart-grid">
+            <div class="card">
+              <div class="card-header">
+                <h3>Cost by Region</h3>
+                <span class="badge badge-emerald">Geographic Footprint</span>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="chart-overview-region"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Anomalies Box -->
+            <div class="card">
+              <div class="card-header">
+                <h3>Recent Detected Anomalies</h3>
+                <a href="#anomalies" class="btn btn-outline btn-xs" onclick="CloudGuardUI.switchView('anomalies')">View All</a>
+              </div>
+              <div class="card-body" id="overview-recent-anomalies">
+                <!-- Injected via UI -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Grid: Recent Records Table & Top Recommendations -->
+          <div class="chart-grid">
+            <div class="card">
+              <div class="card-header">
+                <h3>Recent Billing Records</h3>
+                <a href="#explorer" class="btn btn-outline btn-xs" onclick="CloudGuardUI.switchView('explorer')">Open Cost Explorer</a>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Service</th>
+                        <th>Region</th>
+                        <th>Project</th>
+                        <th class="text-right">Cost</th>
+                      </tr>
+                    </thead>
+                    <tbody id="overview-recent-table-body">
+                      <!-- Injected via UI -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Recommendations Box -->
+            <div class="card">
+              <div class="card-header">
+                <h3>Top Cost Optimizations</h3>
+                <a href="#optimization" class="btn btn-outline btn-xs" onclick="CloudGuardUI.switchView('optimization')">View All</a>
+              </div>
+              <div class="card-body" id="overview-top-recommendations">
+                <!-- Injected via UI -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. BILLING DATA IMPORT VIEW -->
+      <section class="view-section hidden" id="view-import">
+        <div class="view-header">
+          <h2>Billing Data Import</h2>
+          <p>Upload your cloud billing CSV file. Supported formats include AWS Cost & Usage Reports, GCP Cloud Billing exports, Azure Cost Management CSVs, and generic billing tables.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <!-- Drag and Drop Zone -->
+            <div class="drop-zone" id="drop-zone">
+              <div class="drop-zone-icon">📁</div>
+              <h3>Drag and drop your billing CSV file here</h3>
+              <p>or click to browse your computer</p>
+              <input type="file" id="csv-file-input" accept=".csv,text/csv" class="hidden">
+              <div class="mt-4 flex justify-center gap-3">
+                <button class="btn btn-primary" type="button" onclick="document.getElementById('csv-file-input').click()">Select CSV File</button>
+                <button class="btn btn-secondary" type="button" id="btn-load-sample">✨ Load Sample Dataset</button>
+              </div>
+            </div>
+
+            <!-- Template & Action Bar -->
+            <div class="flex-between items-center mt-4 pt-3 border-t border-subtle">
+              <div>
+                <span class="text-xs text-slate">Need a test template?</span>
+                <button class="btn btn-outline btn-xs ml-2" id="btn-download-template">📥 Download Sample CSV Template</button>
+              </div>
+              <div>
+                <button class="btn btn-danger btn-sm" id="btn-clear-data">🗑️ Remove Imported Data & Restart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schema Specification Guide Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Standard Schema & Flexible Column Mapping</h3>
+            <span class="badge badge-cyan">Automated Normalization</span>
+          </div>
+          <div class="card-body">
+            <p class="text-sm text-slate mb-3">CloudGuard AI normalizes your uploaded columns automatically. You can confirm or re-map any column before final import.</p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Standard Field</th>
+                    <th>Requirement</th>
+                    <th>Common Aliases Auto-Mapped</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>usage_date</code></td>
+                    <td><span class="badge badge-rose">Required</span></td>
+                    <td><code>date</code>, <code>billing_date</code>, <code>usage_start_date</code>, <code>start_date</code>, <code>timestamp</code></td>
+                    <td>ISO 8601 (YYYY-MM-DD), MM/DD/YYYY, or DD/MM/YYYY.</td>
+                  </tr>
+                  <tr>
+                    <td><code>service</code></td>
+                    <td><span class="badge badge-rose">Required</span></td>
+                    <td><code>service_name</code>, <code>product_name</code>, <code>product_service</code>, <code>productcode</code></td>
+                    <td>Cloud service identifier (e.g. Amazon EC2, BigQuery).</td>
+                  </tr>
+                  <tr>
+                    <td><code>cost_amount</code></td>
+                    <td><span class="badge badge-rose">Required</span></td>
+                    <td><code>cost_usd</code>, <code>unblended_cost</code>, <code>line_item_unblended_cost</code>, <code>amount</code>, <code>total_cost</code></td>
+                    <td>Numeric billed cost in currency. Supports negative credits (e.g. -$50.00).</td>
+                  </tr>
+                  <tr>
+                    <td><code>region</code></td>
+                    <td><span class="badge badge-slate">Optional</span></td>
+                    <td><code>availability_zone</code>, <code>location</code>, <code>resourcelocation</code></td>
+                    <td>Data center region (e.g. us-east-1, eu-west-1).</td>
+                  </tr>
+                  <tr>
+                    <td><code>account_id</code></td>
+                    <td><span class="badge badge-slate">Optional</span></td>
+                    <td><code>linked_account_id</code>, <code>subscription_id</code>, <code>project_id</code></td>
+                    <td>Cloud account, subscription, or project identifier.</td>
+                  </tr>
+                  <tr>
+                    <td><code>tag_project</code></td>
+                    <td><span class="badge badge-slate">Optional</span></td>
+                    <td><code>project</code>, <code>tag_name_project</code>, <code>resource_tags_user_project</code></td>
+                    <td>Resource cost allocation tag for project.</td>
+                  </tr>
+                  <tr>
+                    <td><code>tag_environment</code></td>
+                    <td><span class="badge badge-slate">Optional</span></td>
+                    <td><code>environment</code>, <code>env</code>, <code>tag_name_environment</code></td>
+                    <td>Deployment stage tag (production, staging, dev).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. COST EXPLORER VIEW -->
+      <section class="view-section hidden" id="view-explorer">
+        <div class="view-header">
+          <h2>Cost Explorer</h2>
+          <p>Multi-dimensional analysis, time-series aggregations, and filtered record browsing.</p>
+        </div>
+
+        <div class="empty-state-notice">
+          <div class="empty-state-icon">🔍</div>
+          <h3>No Billing Data Loaded</h3>
+          <p>Please upload a CSV or load sample data to explore costs.</p>
+          <button class="btn btn-primary" onclick="CloudGuardApp.loadSampleData()">✨ Load Sample Data</button>
+        </div>
+
+        <div class="data-content-wrapper hidden">
+          <!-- Filter Bar -->
+          <div class="filter-bar">
+            <div class="filter-group">
+              <label>Start Date</label>
+              <input type="date" id="filter-start-date" class="form-control">
+            </div>
+            <div class="filter-group">
+              <label>End Date</label>
+              <input type="date" id="filter-end-date" class="form-control">
+            </div>
+            <div class="filter-group">
+              <label>Cloud Service</label>
+              <select id="filter-service" class="form-select">
+                <option value="">All Services</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label>Region</label>
+              <select id="filter-region" class="form-select">
+                <option value="">All Regions</option>
+              </select>
+            </div>
+            <div class="filter-group" style="flex: 1; min-width: 200px;">
+              <label>Search Text</label>
+              <input type="text" id="filter-search" class="form-control" placeholder="Search service, region, account, project...">
+            </div>
+            <div>
+              <button class="btn btn-secondary btn-sm" id="filter-reset-btn">Reset Filters</button>
+            </div>
+          </div>
+
+          <!-- Explorer Chart Card -->
+          <div class="card">
+            <div class="card-header">
+              <div class="flex items-center gap-3">
+                <h3>Cost Trend Aggregation</h3>
+                <div class="btn-group flex gap-1">
+                  <button class="btn btn-secondary btn-xs btn-granularity active" data-granularity="daily">Daily</button>
+                  <button class="btn btn-secondary btn-xs btn-granularity" data-granularity="weekly">Weekly</button>
+                  <button class="btn btn-secondary btn-xs btn-granularity" data-granularity="monthly">Monthly</button>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <label class="text-xs text-slate">Chart Style:</label>
+                <select id="explorer-chart-type" class="form-select" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">
+                  <option value="bar">Bar Chart</option>
+                  <option value="line">Line Chart</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-container-lg">
+                <canvas id="chart-explorer-main"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Records Table Card -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3>Billing Records</h3>
+                <span class="text-xs text-slate" id="explorer-record-range">Showing records</span>
+              </div>
+              <div>
+                <button class="btn btn-outline btn-xs" id="btn-export-csv">📥 Export Filtered CSV</button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="sortable-th" data-col="usage_date">Date ↕</th>
+                      <th class="sortable-th" data-col="service">Service ↕</th>
+                      <th class="sortable-th" data-col="region">Region ↕</th>
+                      <th class="sortable-th" data-col="account_name">Account ↕</th>
+                      <th class="sortable-th" data-col="tag_project">Project ↕</th>
+                      <th class="sortable-th" data-col="tag_environment">Env ↕</th>
+                      <th class="sortable-th text-right" data-col="cost_amount">Cost ↕</th>
+                    </tr>
+                  </thead>
+                  <tbody id="explorer-table-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+              
+              <!-- Pagination Bar -->
+              <div class="flex-between items-center p-3 border-t border-subtle">
+                <div class="text-xs text-slate">Click column header to sort</div>
+                <div id="explorer-pagination-controls" class="flex items-center gap-2">
+                  <!-- Pagination buttons -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. ANOMALY DETECTION VIEW -->
+      <section class="view-section hidden" id="view-anomalies">
+        <div class="view-header">
+          <h2>Statistical Anomaly Detection</h2>
+          <p>Identifies unusual spikes and drops by calculating rolling medians and Median Absolute Deviation (MAD) across service baselines.</p>
+        </div>
+
+        <div class="empty-state-notice">
+          <div class="empty-state-icon">⚡</div>
+          <h3>No Billing Data Loaded</h3>
+          <p>Please load billing data to run statistical anomaly detection.</p>
+          <button class="btn btn-primary" onclick="CloudGuardApp.loadSampleData()">✨ Load Sample Data</button>
+        </div>
+
+        <div class="data-content-wrapper hidden">
+          <!-- Anomaly Overview Card -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Spending Timeline & Flagged Spikes</h3>
+              <span class="badge badge-rose"><span id="anomalies-total-count">0</span> Anomalies Identified</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container-lg">
+                <canvas id="chart-anomaly-timeseries"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anomalies Table -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Detected Cost Anomalies Log</h3>
+              <span class="text-xs text-slate">Ranked by severity and divergence</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Service</th>
+                      <th>Severity</th>
+                      <th class="text-right">Actual Cost</th>
+                      <th class="text-right">Baseline (Median)</th>
+                      <th class="text-right">Difference (Δ)</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="anomalies-table-body">
+                    <!-- Injected via UI -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Methodology Transparency Callout -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Detection Methodology & Scientific Transparency</h3>
+              <span class="badge badge-slate">FinOps Principles</span>
+            </div>
+            <div class="card-body">
+              <p class="text-sm text-slate mb-2">CloudGuard AI utilizes a robust non-parametric statistical method based on the <strong>Rolling Median and Median Absolute Deviation (MAD)</strong>:</p>
+              <ul class="text-xs text-slate ml-4 mb-3" style="list-style-type: disc; padding-left: 20px;">
+                <li><strong>Outlier Resistance:</strong> Unlike classical mean and standard deviation, median and MAD are unaffected by prior spikes, preventing the baseline from distorting during high-spend periods.</li>
+                <li><strong>Modified Z-Score:</strong> Evaluated using the standard formula: <code>0.6745 × (Actual - Median) / MAD</code>.</li>
+                <li><strong>Data Sufficiency Rules:</strong> Requires at least 5 consecutive historical days before establishing a baseline to prevent false alerts on newly provisioned services.</li>
+                <li><strong>Disclaimers:</strong> Statistical deviations indicate uncharacteristic consumption patterns. They do not constitute conclusive evidence of billing errors, fraud, or waste without inspection in your cloud provider's console.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. COST FORECAST VIEW -->
+      <section class="view-section hidden" id="view-forecast">
+        <div class="view-header">
+          <h2>Cost Forecasting</h2>
+          <p>Lightweight statistical projections of future cloud spend with transparent confidence intervals.</p>
+        </div>
+
+        <div class="empty-state-notice">
+          <div class="empty-state-icon">📈</div>
+          <h3>No Billing Data Loaded</h3>
+          <p>Please load billing data to generate forward-looking cost forecasts.</p>
+          <button class="btn btn-primary" onclick="CloudGuardApp.loadSampleData()">✨ Load Sample Data</button>
+        </div>
+
+        <div id="forecast-sufficiency-notice" class="mb-4"></div>
+
+        <div class="data-content-wrapper hidden" id="forecast-content-wrapper">
+          <!-- Forecast Summary Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Projected Horizon Total</div>
+              <div class="kpi-value text-amber" id="forecast-projected-total">$0.00</div>
+              <div class="kpi-subtext">Estimated next period spend</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Projected Daily Average</div>
+              <div class="kpi-value" id="forecast-projected-daily">$0.00/day</div>
+              <div class="kpi-subtext">Baseline daily run-rate</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Forecast Method</div>
+              <div class="kpi-value text-white text-base font-bold" id="forecast-method-badge">Linear Regression</div>
+              <div class="kpi-subtext">Based on historical data volume</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Confidence Rating</div>
+              <div class="kpi-value text-cyan text-base font-bold" id="forecast-confidence-badge">Moderate</div>
+              <div class="kpi-subtext">Statistical sample size rating</div>
+            </div>
+          </div>
+
+          <!-- Forecast Chart -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Historical Spend & Future Projection</h3>
+              <span class="badge badge-amber">With 95% Confidence Band</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container-lg">
+                <canvas id="chart-forecast-projection"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Method Explanation & Limitations -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Model Transparency & Governance</h3>
+              <span class="badge badge-slate">Transparent FinOps</span>
+            </div>
+            <div class="card-body">
+              <div class="alert-box mb-3">
+                <strong>Method In Use:</strong>
+                <p class="text-xs text-slate mt-1" id="forecast-method-explanation">—</p>
+              </div>
+              <p class="text-xs text-slate" id="forecast-limitations">—</p>
+            </div>
+          </div>
+
+          <!-- Forecast Daily Points Table -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Projected Daily Spending Breakdown</h3>
+              <span class="text-xs text-slate">Future timeline</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Projected Date</th>
+                      <th class="text-right">Projected Spend</th>
+                      <th class="text-right">Lower Bound (95% CI)</th>
+                      <th class="text-right">Upper Bound (95% CI)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="forecast-table-body">
+                    <!-- Injected via UI -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. COST OPTIMIZATION RECOMMENDATIONS VIEW -->
+      <section class="view-section hidden" id="view-optimization">
+        <div class="view-header">
+          <h2>Cost Optimization Recommendations</h2>
+          <p>Explainable, evidence-based recommendations derived directly from patterns observed in your uploaded billing data.</p>
+        </div>
+
+        <div class="empty-state-notice">
+          <div class="empty-state-icon">💡</div>
+          <h3>No Billing Data Loaded</h3>
+          <p>Please upload billing records to generate tailored cost optimization recommendations.</p>
+          <button class="btn btn-primary" onclick="CloudGuardApp.loadSampleData()">✨ Load Sample Data</button>
+        </div>
+
+        <div class="data-content-wrapper hidden">
+          <!-- Summary Banner -->
+          <div class="kpi-grid mb-4">
+            <div class="kpi-card">
+              <div class="kpi-title">Identified Opportunities</div>
+              <div class="kpi-value text-cyan" id="recs-total-count">0</div>
+              <div class="kpi-subtext">Actionable FinOps rules triggered</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Defensible Potential Savings</div>
+              <div class="kpi-value text-emerald" id="recs-total-savings">$0.00</div>
+              <div class="kpi-subtext">Calculated from commitment & tiering baselines</div>
+            </div>
+          </div>
+
+          <!-- Recommendations Cards List -->
+          <div id="recommendations-card-list">
+            <!-- Injected via UI -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. REPORTS VIEW -->
+      <section class="view-section hidden" id="view-reports">
+        <div class="view-header flex-between items-center">
+          <div>
+            <h2>Executive Billing Report</h2>
+            <p>Comprehensive cost summary, anomaly audit log, and optimization roadmap.</p>
+          </div>
+          <div class="flex gap-2 hide-print">
+            <button class="btn btn-secondary btn-sm" id="btn-export-json">💾 Export JSON</button>
+            <button class="btn btn-primary btn-sm" id="btn-print-report">🖨️ Print / Save PDF</button>
+          </div>
+        </div>
+
+        <div class="empty-state-notice">
+          <div class="empty-state-icon">📑</div>
+          <h3>No Billing Data Loaded</h3>
+          <p>Please load billing data to generate executive reports.</p>
+          <button class="btn btn-primary" onclick="CloudGuardApp.loadSampleData()">✨ Load Sample Data</button>
+        </div>
+
+        <div class="data-content-wrapper hidden">
+          <!-- Report Header Card -->
+          <div class="card">
+            <div class="card-body">
+              <div class="flex-between items-center mb-3">
+                <div class="flex items-center gap-2">
+                  <img src="assets/images/logo.svg" alt="CloudGuard" width="28" height="28">
+                  <h3 class="font-bold text-lg text-white">CloudGuard AI — Executive Billing Summary</h3>
+                </div>
+                <div class="text-xs text-slate">
+                  Generated: <span id="report-generated-timestamp" class="font-mono"></span>
+                </div>
+              </div>
+              <div class="kpi-grid-mini mb-3">
+                <div class="mini-stat">
+                  <span class="label">Date Range</span>
+                  <span class="val font-mono" id="report-date-range"></span>
+                </div>
+                <div class="mini-stat">
+                  <span class="label">Net Total Spend</span>
+                  <span class="val font-mono text-cyan" id="report-total-spend"></span>
+                </div>
+                <div class="mini-stat">
+                  <span class="label">Daily Average</span>
+                  <span class="val font-mono" id="report-daily-avg"></span>
+                </div>
+                <div class="mini-stat">
+                  <span class="label">Primary Cost Driver</span>
+                  <span class="val font-mono text-white" id="report-top-service"></span>
+                </div>
+                <div class="mini-stat">
+                  <span class="label">Anomalies Detected</span>
+                  <span class="val font-mono text-rose" id="report-anomalies-count"></span>
+                </div>
+                <div class="mini-stat">
+                  <span class="label">Potential Savings</span>
+                  <span class="val font-mono text-emerald" id="report-potential-savings"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Breakdown Summary Table -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Service Cost Distribution</h3>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Service Name</th>
+                      <th class="text-right">Total Billed Cost</th>
+                      <th class="text-right">Share of Spend</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-service-tbody">
+                    <!-- Injected dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. SETTINGS & PRIVACY VIEW -->
+      <section class="view-section hidden" id="view-settings">
+        <div class="view-header">
+          <h2>Settings and Data Privacy</h2>
+          <p>Configure dashboard preferences, anomaly sensitivity thresholds, and review privacy architecture.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Display & Analysis Preferences</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label" for="setting-currency">Display Currency</label>
+              <select id="setting-currency" class="form-select" style="max-width: 300px;">
+                <option value="USD">USD ($) — US Dollar</option>
+                <option value="EUR">EUR (€) — Euro</option>
+                <option value="GBP">GBP (£) — British Pound</option>
+                <option value="INR">INR (₹) — Indian Rupee</option>
+                <option value="CAD">CAD (C$) — Canadian Dollar</option>
+                <option value="AUD">AUD (A$) — Australian Dollar</option>
+                <option value="JPY">JPY (¥) — Japanese Yen</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="setting-sensitivity">Anomaly Detection Sensitivity</label>
+              <select id="setting-sensitivity" class="form-select" style="max-width: 300px;">
+                <option value="strict">Strict (2.0x MAD — Flags smaller deviations)</option>
+                <option value="balanced" selected>Balanced (3.0x MAD — Recommended default)</option>
+                <option value="relaxed">Relaxed (4.5x MAD — Flags only extreme outliers)</option>
+              </select>
+              <small class="text-xs text-slate">Determines the multiple of Median Absolute Deviation required to flag a spending spike.</small>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="setting-forecast-days">Default Forecast Horizon</label>
+              <select id="setting-forecast-days" class="form-select" style="max-width: 300px;">
+                <option value="7">7 Days Ahead</option>
+                <option value="14" selected>14 Days Ahead (Recommended)</option>
+                <option value="30">30 Days Ahead</option>
+              </select>
+            </div>
+
+            <div class="form-group pt-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="setting-local-storage" style="accent-color: var(--accent-cyan); width: 16px; height: 16px;">
+                <span class="text-sm font-semibold">Enable Local Browser Session Caching</span>
+              </label>
+              <small class="text-xs text-slate ml-6 block">Disabled by default for maximum privacy. When enabled, records persist in your browser's localStorage for this domain only.</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy & Security Guarantees Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3>🛡️ Privacy Architecture & Guarantees</h3>
+            <span class="badge badge-emerald">Static Hosting (GitHub Pages)</span>
+          </div>
+          <div class="card-body">
+            <ul class="text-sm text-slate flex flex-col gap-2" style="list-style: none;">
+              <li>🔒 <strong>100% In-Browser Execution:</strong> Your cloud billing files are parsed directly inside your browser memory using Papa Parse and Web APIs. Zero bytes are uploaded to any external server.</li>
+              <li>🚫 <strong>No External Analytics or Trackers:</strong> This application contains no tracking scripts, telemetry, cookies, or paid API calls.</li>
+              <li>🔑 <strong>Zero Secrets or Credentials:</strong> CloudGuard AI operates solely on static billing CSV exports. It never asks for, requires, or stores AWS/GCP/Azure access keys or passwords.</li>
+              <li>🌐 <strong>Static GitHub Pages Deployment:</strong> Hosted as pure static HTML5/CSS/JavaScript. GitHub Pages acts purely as a static content distributor.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Application Reset Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Data Management & Application Reset</h3>
+          </div>
+          <div class="card-body">
+            <p class="text-sm text-slate mb-3">Clear all cached datasets and restore original factory settings.</p>
+            <button class="btn btn-danger btn-sm" id="btn-reset-app">Reset Application & Clear State</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL: Column Mapping -->
+  <div class="modal-overlay hidden" id="column-mapping-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="font-bold text-white text-base">Confirm Column Mapping</h3>
+        <button class="btn btn-outline btn-xs" id="btn-cancel-mapping">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="mapping-ambiguity-notice" class="alert-box alert-warning mb-3 hidden"></div>
+        <p class="text-xs text-slate mb-3">CloudGuard auto-detected the following columns from your CSV. Ensure the required fields (<code>usage_date</code>, <code>service</code>, and <code>cost_amount</code>) are mapped accurately:</p>
+        
+        <div class="table-responsive mb-4">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Standard Field</th>
+                <th>Source CSV Column</th>
+              </tr>
+            </thead>
+            <tbody id="mapping-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="font-bold text-xs text-white uppercase tracking-wider mb-2">First 10 Rows Preview:</h4>
+        <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
+          <table class="data-table text-xs">
+            <thead id="mapping-preview-head"></thead>
+            <tbody id="mapping-preview-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('column-mapping-modal').classList.add('hidden')">Cancel</button>
+        <button class="btn btn-primary" id="btn-confirm-mapping">Confirm & Import Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Anomaly Investigation -->
+  <div class="modal-overlay hidden" id="anomaly-investigation-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="font-bold text-white text-base">Anomaly Investigation</h3>
+        <button class="btn btn-outline btn-xs" id="btn-close-anomaly-modal">✕</button>
+      </div>
+      <div class="modal-body" id="anomaly-modal-content">
+        <!-- Injected dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('anomaly-investigation-modal').classList.add('hidden')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- JavaScript Modules (Loaded in dependency order) -->
+  <script src="assets/js/state.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/dataNormalizer.js"></script>
+  <script src="assets/js/costEngine.js"></script>
+  <script src="assets/js/anomalyDetector.js"></script>
+  <script src="assets/js/forecaster.js"></script>
+  <script src="assets/js/recommendations.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/reports.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

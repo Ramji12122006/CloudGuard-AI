@@ -1,0 +1,133 @@
+/**
+ * CloudGuard AI — Responsive Breakpoints & Mobile Navigation
+ * Module: responsive.css
+ */
+
+/* Mobile Toggle Button (Hidden on Desktop) */
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-toggle:hover {
+  background-color: var(--bg-card);
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 17, 32, 0.7);
+  backdrop-filter: blur(2px);
+  z-index: 95;
+}
+
+/* Tablet Breakpoint (<= 1024px) */
+@media (max-width: 1024px) {
+  .chart-grid, .chart-grid-equal {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rec-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Breakpoint (<= 768px) */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: inline-flex;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop.active,
+  .sidebar.open + .sidebar-backdrop {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .topbar-right .btn-sm {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+
+  .topbar-right span.btn-text {
+    display: none;
+  }
+
+  .view-section {
+    padding: 16px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .modal-container {
+    width: 95%;
+    max-height: 92vh;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+
+  .chart-container-lg {
+    height: 300px;
+  }
+
+  #toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .toast {
+    min-width: unset;
+    width: 100%;
+  }
+}
